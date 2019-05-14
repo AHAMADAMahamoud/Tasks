@@ -1,0 +1,13 @@
+{
+  "autoload": {
+    "psr-4": {
+      "TodoList\\": "src"
+    }
+  },
+  "require": {
+    "ext-pdo": "*",
+    "ext-json":"*",
+    "squizlabs/php_codesniffer": "^3.4"
+
+  }
+}
