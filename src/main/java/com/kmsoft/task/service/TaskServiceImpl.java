@@ -25,4 +25,14 @@ public class TaskServiceImpl implements TaskService {
 		return this.taskRepository.save(task);
 	}
 
+	@Override
+	public boolean delete(Long task) {
+		try {
+			this.taskRepository.deleteById(task);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
 }

@@ -46,7 +46,6 @@
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
-			<version>1.4.193</version>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
@@ -90,7 +89,6 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -103,6 +101,55 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+					<!-- <plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+					        <artifactId>maven-resources-plugin</artifactId>
+					        <executions>
+					          <execution>
+					            <id>copy-scripts</id>
+					            -->
+					            <!--  install phase so the jar has been made -->
+					         <!--     <phase>package</phase>
+					            <goals>
+					              <goal>copy-resources</goal>
+					            </goals>
+					            <configuration>
+					              <outputDirectory>${basedir}/target/</outputDirectory>
+					              <resources>          
+					                <resource>
+					                  <directory>src/main/resources</directory>
+						        	  <filtering>true</filtering>
+						        	  <includes>
+					                  	<include>application*</include>
+					                  </includes>
+					                </resource>
+					              </resources>              
+					            </configuration>            
+					          </execution>
+					         </executions>
+					      </plugin>
+					      -->
+					      
+			<!--  	
+			<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                     <descriptors>
+                        <descriptor>assembly/assembly.xml</descriptor>
+                    </descriptors>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>trigger-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+             -->
 		</plugins>
 	</build>
 

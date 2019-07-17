@@ -7,4 +7,6 @@ public interface TaskService {
 	Iterable<Task> list();
 
 	Task save(Task task);
+
+	boolean delete(Long id);
 }
