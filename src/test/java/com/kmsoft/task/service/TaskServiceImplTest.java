@@ -1,48 +1,81 @@
 package com.kmsoft.task.service;
 
-import com.kmsoft.task.AbstractTest;
-import com.kmsoft.task.TasksApplication;
-import com.kmsoft.task.domain.Task;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.support.AnnotationConfigContextLoader;
-
-import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
-import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.*;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import com.kmsoft.task.AbstractTest;
+import com.kmsoft.task.domain.Task;
 
-public class TaskServiceImplTest  extends AbstractTest {
+/**
+ * 
+ * (Description)
+ *
+ * @since 18 juil. 2019
+ * @author mohamed.hanafi
+ */
+public class TaskServiceImplTest extends AbstractTest {
 
-    @Mock
-    TaskService service;
+    @Autowired
+    TaskService taskService;
+    private List<Task> list = new ArrayList<>();
 
+    @Before
+    public void setUp() throws Exception {
+        taskService.save(new Task(1L, "Definir les fonctionalités attendues", LocalDate.now(), false));
+        taskService.save(new Task(2L, "Faire la conception technique", LocalDate.now(), false));
+        taskService.save(new Task(3L, "Preparer l'environnement de travail", LocalDate.now(), true));
+        taskService.save(new Task(4L, "Créer l'architecture du projet et des bases de données ", LocalDate.now(), false));
+        this.taskService.list().iterator().forEachRemaining(task -> {
+            list.add(task);
+        });
+    }
 
-    @Test
-    public  void list() {
-        Task task=new Task(1L, "Write Unit Test using Junit 5 and mockito", LocalDate.now(), false);
-        this.service.save(task);
-        Iterable<Task> list=this.service.list();
-        assertTrue(list.iterator().hasNext());
+    @After
+    public void tearDown() throws Exception {
+        list.forEach(task -> {
+            taskService.delete(task.getId());
+        });
 
     }
 
     @Test
-    public  void save() {
-        Task task=new Task(1L, "Write Unit Test using Junit 5 and mockito", LocalDate.now(), false);
+    public void listNotEmpty() {
+        assertTrue(!list.isEmpty());
+    }
 
-        when(this.service.save(task)).thenReturn(task);
+    @Test
+    public void updatePerformed() {
+
+        Task task = new Task(1L, "Write Unit Test using Junit 5 and mockito", LocalDate.now(), false);
+        this.taskService.save(task);
+        List<Task> list1 = new ArrayList<>();
+        this.taskService.list().iterator().forEachRemaining(task1 -> {
+            list1.add(task1);
+        });
+        assertTrue(list.size() < list1.size());
 
     }
+
+    @Test
+    public void savePerformed() {
+
+        Task task = new Task(5L, "Write Unit Test using Junit 5 and mockito", LocalDate.now(), false);
+        this.taskService.save(task);
+        List<Task> list1 = new ArrayList<>();
+        this.taskService.list().iterator().forEachRemaining(task1 -> {
+            list1.add(task1);
+        });
+        assertFalse(list.size() < list1.size());
+
+    }
+
 }
