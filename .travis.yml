@@ -11,3 +11,5 @@ branches:
   - master
 jdk:
   - oraclejdk11
+dist:
+  - bionic
