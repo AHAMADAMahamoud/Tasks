@@ -9,3 +9,5 @@ env:
 branches:
   only:
   - master
+jdk:
+  - oraclejdk11
