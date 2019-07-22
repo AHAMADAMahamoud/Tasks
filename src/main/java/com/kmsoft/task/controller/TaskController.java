@@ -1,5 +1,8 @@
 package com.kmsoft.task.controller;
 
+import java.util.Map;
+
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,9 +26,7 @@ public class TaskController {
 
     @GetMapping(value = {"", "/"})
     public Iterable<Task> list() {
-
         return this.taskService.list();
-
     }
 
     @PostMapping("/save")
@@ -33,8 +34,8 @@ public class TaskController {
         return this.taskService.save(task);
     }
 
-    @PostMapping("/delete/{id}")
-    public boolean delTask(@PathVariable Long id) {
+    @DeleteMapping("/delete/{id}")
+    public Map<String, String> delTask(@PathVariable Long id) {
         return this.taskService.delete(id);
     }
 }

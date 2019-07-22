@@ -8,9 +8,6 @@ import javax.persistence.Id;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-
 /**
  * 
  * (Description)
@@ -19,8 +16,6 @@ import lombok.Data;
  * @author mohamed.hanafi
  */
 @Entity
-@Data
-@AllArgsConstructor
 public class Task {
 
     @Id
@@ -32,6 +27,57 @@ public class Task {
     private Boolean completed;
 
     public Task() {
+    }
+
+    public Task(Long id, String name, LocalDate dueDate, Boolean completed) {
+        super();
+        this.id = id;
+        this.name = name;
+        this.dueDate = dueDate;
+        this.completed = completed;
+    }
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public LocalDate getDueDate() {
+        return this.dueDate;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("{ \"id\" : ").append(id).append(",");
+        builder.append("\"name\" : ").append("\"").append(name).append("\"").append(",");
+        builder.append("\"dueDate\" : ").append("\"").append(dueDate).append("\"").append(",");
+        builder.append("\"completed\" : ").append("\"").append(completed).append("\"");
+        builder.append("}");
+        return builder.toString();
+    }
+
+    public void setDueDate(LocalDate dueDate) {
+        this.dueDate = dueDate;
+    }
+
+    public Boolean getCompleted() {
+        return this.completed;
+    }
+
+    public void setCompleted(Boolean completed) {
+        this.completed = completed;
     }
 
 }
