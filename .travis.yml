@@ -9,7 +9,3 @@ env:
 branches:
   only:
   - master
-jdk:
-  - oraclejdk11
-dist:
-  - bionic
