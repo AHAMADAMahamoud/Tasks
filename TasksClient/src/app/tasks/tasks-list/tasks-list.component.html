@@ -1,6 +1,7 @@
 <ul class="list-group">
   <li *ngFor="let task of tasks" class="list-group-item">
     <div class="task-checkbox">
+      <img src="https://img.icons8.com/officexs/2x/delete-sign.png" width="16" (click)="onDelClicked($event, task)" /> &nbsp; &nbsp; &nbsp;
       <input type="checkbox" class="list-child" (change)="onTaskChange($event, task)" [checked]="task.completed">
       &nbsp;
       <span ngClass="{{task.completed? 'name completed' : 'name'}}">{{task.name}}</span>

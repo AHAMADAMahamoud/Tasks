@@ -39,4 +39,14 @@ export class TasksListComponent implements OnInit {
         err => console.log(err)
       );
   }
+
+  onDelClicked(event, task: Task) {
+    this.taskService.delTask(task.id)
+      .subscribe(data => {
+      },
+        err => console.log(err)
+      );
+      this.tasks.splice(this.tasks.indexOf(task), 1);
+      return this.tasks;
+  }
 }

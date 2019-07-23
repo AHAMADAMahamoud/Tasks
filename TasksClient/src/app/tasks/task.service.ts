@@ -31,4 +31,10 @@ export class TaskService {
       map(response => response.body)
     );
   }
+
+  delTask(idTask: Number) {
+    return this.http.delete('/api/tasks/delete/'+idTask,  { observe: 'response' }).pipe(
+      map(response => response.body)
+    );
+  }
 }
