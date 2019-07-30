@@ -5,7 +5,7 @@ after_success:
   bash <(curl -s https://codecov.io/bash) -t 733411bb-0dcd-42b5-9cb2-b8b8e3fe1e33
 env:
   global:
-    - CODECOV_TOKEN=:733411bb-0dcd-42b5-9cb2-b8b8e3fe1e33
+    - CODECOV_TOKEN="733411bb-0dcd-42b5-9cb2-b8b8e3fe1e33"
 branches:
   only:
   - master
