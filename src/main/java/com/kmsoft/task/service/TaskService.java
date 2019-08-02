@@ -1,5 +1,7 @@
 package com.kmsoft.task.service;
 
+import java.util.Map;
+
 import com.kmsoft.task.domain.Task;
 
 /**
@@ -15,5 +17,5 @@ public interface TaskService {
 
     Task save(Task task);
 
-    boolean delete(Long id);
+    Map<String, String> delete(Long id);
 }

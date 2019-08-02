@@ -1,5 +1,9 @@
 package com.kmsoft.task.service;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.stereotype.Service;
 
 import com.kmsoft.task.domain.Task;
@@ -23,8 +27,13 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public Iterable<Task> list() {
-        return this.taskRepository.findAll();
+    public List<Task> list() {
+        List<Task> list = (List<Task>) this.taskRepository.findAll();
+        list.sort((o1, o2) -> {
+            return (o1.getId().compareTo(o2.getId()));
+        });
+        return list;
+
     }
 
     @Override
@@ -33,12 +42,17 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public boolean delete(Long task) {
+    public Map<String, String> delete(Long task) {
+        Map<String, String> result = new HashMap<String, String>();
         try {
             this.taskRepository.deleteById(task);
-            return true;
+            result.put("message", "Object deleted succeful");
+            result.put("error", "0");
+            return result;
         } catch (Exception e) {
-            return false;
+            result.put("message", e.getMessage());
+            result.put("error", "1");
+            return result;
         }
     }
 
