@@ -2,6 +2,8 @@ package com.kmsoft.task.controller;
 
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +19,8 @@ import com.kmsoft.task.service.TaskService;
 @RequestMapping("/api/tasks")
 public class TaskController {
 
+    Logger log = LoggerFactory.getLogger(this.getClass());
+
     private TaskService taskService;
 
     public TaskController(TaskService taskService) {
@@ -26,7 +30,7 @@ public class TaskController {
 
     @GetMapping(value = {"", "/"})
     public Iterable<Task> list() {
-
+        log.info("-- Get list invoked --");
         return this.taskService.list();
 
     }

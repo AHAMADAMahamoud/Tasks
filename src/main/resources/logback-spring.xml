@@ -23,7 +23,7 @@
         <rollingPolicy
             class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- rollover daily and when the file reaches 10 MegaBytes -->
-            <fileNamePattern>${LOGS}/com.-kmsoft-task-logger-%d{yyyy-MM-dd}.%i.log
+            <fileNamePattern>${LOGS}/com-kmsoft-task-logger-%d{yyyy-MM-dd}.%i.log
             </fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy
                 class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
@@ -38,8 +38,8 @@
         <appender-ref ref="Console" />
     </root>
  
-    <!-- LOG "com.baeldung*" at TRACE level -->
-    <logger name="com.kmsoft.task" level="trace" additivity="false">
+    <!-- LOG "com.kmsoft.task*" at TRACE level -->
+    <logger name="com.kmsoft.task*" level="trace" additivity="false">
         <appender-ref ref="RollingFile" />
         <appender-ref ref="Console" />
     </logger>
